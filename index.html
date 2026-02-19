@@ -89,17 +89,33 @@
             position: absolute;
             left: 50%;
             transform: translateX(-50%);
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .logo-main {
             font-family: var(--font-serif);
             font-size: 1.8rem;
             font-weight: 400;
             letter-spacing: 0.3em;
             color: var(--color-accent);
-            text-decoration: none;
             text-transform: uppercase;
-            transition: all 0.3s ease;
         }
 
-        .logo:hover {
+        .logo-subtitle {
+            font-family: var(--font-sans);
+            font-size: 0.65rem;
+            font-weight: 300;
+            letter-spacing: 0.2em;
+            color: var(--color-muted);
+            text-transform: lowercase;
+        }
+
+        .logo:hover .logo-main {
             color: var(--color-accent-hover);
         }
 
@@ -640,7 +656,10 @@
             <button class="lang-btn active" data-lang="uk">УКР</button>
             <button class="lang-btn" data-lang="ru">РУ</button>
         </div>
-        <a href="#" class="logo">LOVELY</a>
+        <a href="#" class="logo">
+            <span class="logo-main">LOVELY</span>
+            <span class="logo-subtitle">flowers boutique</span>
+        </a>
     </nav>
 
     <!-- Hero Section -->
