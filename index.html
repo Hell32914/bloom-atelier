@@ -86,15 +86,18 @@
         }
 
         .logo {
-            font-family: var(--font-serif);
-            font-size: 1.5rem;
-            font-weight: 500;
-            letter-spacing: 0.15em;
-            color: var(--color-text);
-            text-decoration: none;
             position: absolute;
             left: 50%;
             transform: translateX(-50%);
+            height: 50px;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 100%;
+            width: auto;
+            object-fit: contain;
         }
 
         /* Hero Section */
@@ -634,13 +637,12 @@
             <button class="lang-btn active" data-lang="uk">УКР</button>
             <button class="lang-btn" data-lang="ru">РУ</button>
         </div>
-        <a href="#" class="logo">BLOOM ATELIER</a>
+        <a href="#" class="logo"><img src="123123.jpg" alt="Bloom Atelier"></a>
     </nav>
 
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
-            <span class="hero-label" data-i18n="hero.label" data-uk="Квіткова майстерня в Києві" data-ru="Цветочная мастерская в Киеве">Квіткова майстерня в Києві</span>
             <h1><span data-i18n="hero.title1" data-uk="Квіти, які" data-ru="Цветы, которые">Квіти, які</span> <span data-i18n="hero.title2" data-uk="говорять" data-ru="говорят">говорять</span> <span data-i18n="hero.title3" data-uk="за вас" data-ru="за вас">за вас</span></h1>
             <p class="hero-subtitle" data-i18n="hero.subtitle" data-uk="Авторські букети з доставкою по Києву за 2 години. Свіжі, стильні, створені з увагою до кожної деталі." data-ru="Авторские букеты с доставкой по Киеву за 2 часа. Свежие, стильные, созданные с вниманием к каждой детали.">Авторські букети з доставкою по Києву за 2 години. Свіжі, стильні, створені з увагою до кожної деталі.</p>
             <a href="https://t.me/your_telegram_bot" class="btn-primary" data-i18n="hero.cta" data-uk="Підібрати букет у Telegram →" data-ru="Подобрать букет в Telegram →">
