@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="uk">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -43,7 +43,7 @@
             width: 100%;
             padding: 1.5rem 5%;
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
             z-index: 1000;
             background: rgba(250, 249, 247, 0.95);
@@ -55,6 +55,36 @@
             box-shadow: 0 2px 20px rgba(0,0,0,0.05);
         }
 
+        /* Language Switcher */
+        .lang-switcher {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .lang-btn {
+            padding: 0.4rem 0.8rem;
+            background: transparent;
+            border: 1px solid var(--color-accent);
+            color: var(--color-text);
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-family: var(--font-sans);
+            letter-spacing: 0.05em;
+            transition: all 0.3s ease;
+            border-radius: 3px;
+            text-transform: uppercase;
+        }
+
+        .lang-btn:hover {
+            background: var(--color-light);
+        }
+
+        .lang-btn.active {
+            background: var(--color-accent);
+            color: var(--color-white);
+        }
+
         .logo {
             font-family: var(--font-serif);
             font-size: 1.5rem;
@@ -62,6 +92,9 @@
             letter-spacing: 0.15em;
             color: var(--color-text);
             text-decoration: none;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
         }
 
         /* Hero Section */
@@ -540,6 +573,27 @@
         }
 
         @media (max-width: 480px) {
+            nav {
+                padding: 1rem 4%;
+            }
+
+            .logo {
+                font-size: 1.2rem;
+                position: relative;
+                left: auto;
+                transform: none;
+            }
+
+            .lang-switcher {
+                position: absolute;
+                left: 4%;
+            }
+
+            .lang-btn {
+                padding: 0.3rem 0.6rem;
+                font-size: 0.75rem;
+            }
+
             .hero h1 {
                 font-size: 2rem;
             }
@@ -576,50 +630,54 @@
 <body>
     <!-- Navigation - Simplified -->
     <nav id="navbar">
+        <div class="lang-switcher">
+            <button class="lang-btn active" data-lang="uk">УКР</button>
+            <button class="lang-btn" data-lang="ru">РУ</button>
+        </div>
         <a href="#" class="logo">BLOOM ATELIER</a>
     </nav>
 
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
-            <span class="hero-label">Цветочная мастерская в Киеве</span>
-            <h1>Цветы, которые <span>говорят</span> за вас</h1>
-            <p class="hero-subtitle">Авторские букеты с доставкой по Киеву за 2 часа. Свежие, стильные, созданные с вниманием к каждой детали.</p>
-            <a href="https://t.me/your_telegram_bot" class="btn-primary">
-                Подобрать букет в Telegram →
+            <span class="hero-label" data-i18n="hero.label" data-uk="Квіткова майстерня в Києві" data-ru="Цветочная мастерская в Киеве">Квіткова майстерня в Києві</span>
+            <h1><span data-i18n="hero.title1" data-uk="Квіти, які" data-ru="Цветы, которые">Квіти, які</span> <span data-i18n="hero.title2" data-uk="говорять" data-ru="говорят">говорять</span> <span data-i18n="hero.title3" data-uk="за вас" data-ru="за вас">за вас</span></h1>
+            <p class="hero-subtitle" data-i18n="hero.subtitle" data-uk="Авторські букети з доставкою по Києву за 2 години. Свіжі, стильні, створені з увагою до кожної деталі." data-ru="Авторские букеты с доставкой по Киеву за 2 часа. Свежие, стильные, созданные с вниманием к каждой детали.">Авторські букети з доставкою по Києву за 2 години. Свіжі, стильні, створені з увагою до кожної деталі.</p>
+            <a href="https://t.me/your_telegram_bot" class="btn-primary" data-i18n="hero.cta" data-uk="Підібрати букет у Telegram →" data-ru="Подобрать букет в Telegram →">
+                Підібрати букет у Telegram →
             </a>
         </div>
         <div class="hero-image">
-            <img src="image(8).png" alt="Букет из розовых пионов" onerror="this.style.display='none'">
+            <img src="image(8).png" alt="Букет з рожевих піонів" onerror="this.style.display='none'">
         </div>
     </section>
 
     <!-- Features Section -->
     <section class="features">
         <div class="section-header fade-in">
-            <span class="section-label">Почему мы</span>
-            <h2 class="section-title">Забота в каждой детали</h2>
+            <span class="section-label" data-i18n="features.label" data-uk="Чому ми" data-ru="Почему мы">Чому ми</span>
+            <h2 class="section-title" data-i18n="features.title" data-uk="Турбота в кожній деталі" data-ru="Забота в каждой детали">Турбота в кожній деталі</h2>
         </div>
         <div class="features-grid">
             <div class="feature-card fade-in">
                 <div class="feature-icon">🌿</div>
-                <h3>Свежесть 24/7</h3>
-                <p>Прямые поставки цветов с лучших плантаций. Каждый букет собираем непосредственно в день доставки.</p>
+                <h3 data-i18n="features.fresh.title" data-uk="Свіжість 24/7" data-ru="Свежесть 24/7">Свіжість 24/7</h3>
+                <p data-i18n="features.fresh.desc" data-uk="Прямі постачання квітів з найкращих плантацій. Кожен букет збираємо безпосередньо в день доставки." data-ru="Прямые поставки цветов с лучших плантаций. Каждый букет собираем непосредственно в день доставки.">Прямі постачання квітів з найкращих плантацій. Кожен букет збираємо безпосередньо в день доставки.</p>
             </div>
             <div class="feature-card fade-in">
                 <div class="feature-icon">📸</div>
-                <h3>Фото перед отправкой</h3>
-                <p>Пришлем снимок готовой композиции до доставки. Вы увидите результат и утвердите его.</p>
+                <h3 data-i18n="features.photo.title" data-uk="Фото перед відправкою" data-ru="Фото перед отправкой">Фото перед відправкою</h3>
+                <p data-i18n="features.photo.desc" data-uk="Надішлемо знімок готової композиції до доставки. Ви побачите результат і затвердите його." data-ru="Пришлем снимок готовой композиции до доставки. Вы увидите результат и утвердите его.">Надішлемо знімок готової композиції до доставки. Ви побачите результат і затвердите його.</p>
             </div>
             <div class="feature-card fade-in">
                 <div class="feature-icon">✨</div>
-                <h3>Авторский дизайн</h3>
-                <p>Никаких шаблонов. Каждая работа — уникальная композиция, созданная под ваш запрос.</p>
+                <h3 data-i18n="features.design.title" data-uk="Авторський дизайн" data-ru="Авторский дизайн">Авторський дизайн</h3>
+                <p data-i18n="features.design.desc" data-uk="Ніяких шаблонів. Кожна робота — унікальна композиція, створена під ваш запит." data-ru="Никаких шаблонов. Каждая работа — уникальная композиция, созданная под ваш запрос.">Ніяких шаблонів. Кожна робота — унікальна композиція, створена під ваш запит.</p>
             </div>
             <div class="feature-card fade-in">
                 <div class="feature-icon">🎁</div>
-                <h3>Премиум упаковка</h3>
-                <p>Крафт-бумага, атласные ленты, открытка ручной работы. Детали, которые впечатляют.</p>
+                <h3 data-i18n="features.pack.title" data-uk="Преміум упаковка" data-ru="Премиум упаковка">Преміум упаковка</h3>
+                <p data-i18n="features.pack.desc" data-uk="Крафт-папір, атласні стрічки, листівка ручної роботи. Деталі, які вражають." data-ru="Крафт-бумага, атласные ленты, открытка ручной работы. Детали, которые впечатляют.">Крафт-папір, атласні стрічки, листівка ручної роботи. Деталі, які вражають.</p>
             </div>
         </div>
     </section>
@@ -627,8 +685,8 @@
     <!-- Gallery Section -->
     <section class="gallery">
         <div class="section-header fade-in">
-            <span class="section-label">Наши работы</span>
-            <h2 class="section-title">Вдохновение для вас</h2>
+            <span class="section-label" data-i18n="gallery.label" data-uk="Наші роботи" data-ru="Наши работы">Наші роботи</span>
+            <h2 class="section-title" data-i18n="gallery.title" data-uk="Натхнення для вас" data-ru="Вдохновение для вас">Натхнення для вас</h2>
         </div>
         <div class="gallery-grid fade-in">
             <div class="gallery-item">
@@ -649,35 +707,35 @@
     <!-- Categories Section -->
     <section class="categories">
         <div class="section-header fade-in">
-            <span class="section-label">Каталог</span>
-            <h2 class="section-title">Наши направления</h2>
+            <span class="section-label" data-i18n="categories.label" data-uk="Каталог" data-ru="Каталог">Каталог</span>
+            <h2 class="section-title" data-i18n="categories.title" data-uk="Наші напрями" data-ru="Наши направления">Наші напрями</h2>
         </div>
         <div class="categories-grid">
             <div class="category-card fade-in">
                 <div class="category-image">
-                    <img src="image(4).png" alt="Авторские букеты" loading="lazy" onerror="this.style.display='none'">
+                    <img src="image(4).png" alt="Авторські букети" loading="lazy" onerror="this.style.display='none'">
                 </div>
                 <div class="category-content">
-                    <h3>Авторские букеты</h3>
-                    <p>Свободные композиции из сезонных цветов. Нежные или контрастные, воздушные или структурные — под настроение и повод.</p>
+                    <h3 data-i18n="categories.author.title" data-uk="Авторські букети" data-ru="Авторские букеты">Авторські букети</h3>
+                    <p data-i18n="categories.author.desc" data-uk="Вільні композиції з сезонних квітів. Ніжні чи контрастні, повітряні чи структурні — під настрій і привід." data-ru="Свободные композиции из сезонных цветов. Нежные или контрастные, воздушные или структурные — под настроение и повод.">Вільні композиції з сезонних квітів. Ніжні чи контрастні, повітряні чи структурні — під настрій і привід.</p>
                 </div>
             </div>
             <div class="category-card fade-in">
                 <div class="category-image">
-                    <img src="image(7).png" alt="Композиции в коробках" loading="lazy" onerror="this.style.display='none'">
+                    <img src="image(7).png" alt="Композиції в коробках" loading="lazy" onerror="this.style.display='none'">
                 </div>
                 <div class="category-content">
-                    <h3>Композиции в коробках</h3>
-                    <p>Элегантное решение для особых моментов. Цветы в коробке сохраняют свежесть дольше и выглядят роскошно.</p>
+                    <h3 data-i18n="categories.boxes.title" data-uk="Композиції в коробках" data-ru="Композиции в коробках">Композиції в коробках</h3>
+                    <p data-i18n="categories.boxes.desc" data-uk="Елегантне рішення для особливих моментів. Квіти в коробці зберігають свіжість довше і виглядають розкішно." data-ru="Элегантное решение для особых моментов. Цветы в коробке сохраняют свежесть дольше и выглядят роскошно.">Елегантне рішення для особливих моментів. Квіти в коробці зберігають свіжість довше і виглядають розкішно.</p>
                 </div>
             </div>
             <div class="category-card fade-in">
                 <div class="category-image">
-                    <img src="image(5).png" alt="Монобукеты" loading="lazy" onerror="this.style.display='none'">
+                    <img src="image(5).png" alt="Монобукети" loading="lazy" onerror="this.style.display='none'">
                 </div>
                 <div class="category-content">
-                    <h3>Монобукеты</h3>
-                    <p>Один вид цветов в идеальном сочетании. Минимализм, который не нуждается в объяснениях. Пионы, тюльпаны, розы.</p>
+                    <h3 data-i18n="categories.mono.title" data-uk="Монобукети" data-ru="Монобукеты">Монобукети</h3>
+                    <p data-i18n="categories.mono.desc" data-uk="Один вид квітів в ідеальному поєднанні. Мінімалізм, який не потребує пояснень. Півонії, тюльпани, троянди." data-ru="Один вид цветов в идеальном сочетании. Минимализм, который не нуждается в объяснениях. Пионы, тюльпаны, розы.">Один вид квітів в ідеальному поєднанні. Мінімалізм, який не потребує пояснень. Півонії, тюльпани, троянди.</p>
                 </div>
             </div>
         </div>
@@ -686,24 +744,24 @@
     <!-- How We Work Section -->
     <section class="how-we-work">
         <div class="section-header fade-in">
-            <span class="section-label">Процесс</span>
-            <h2 class="section-title">Как мы работаем</h2>
+            <span class="section-label" data-i18n="work.label" data-uk="Процес" data-ru="Процесс">Процес</span>
+            <h2 class="section-title" data-i18n="work.title" data-uk="Як ми працюємо" data-ru="Как мы работаем">Як ми працюємо</h2>
         </div>
         <div class="steps-container">
             <div class="step fade-in">
                 <div class="step-number">01</div>
-                <h3>Выбор</h3>
-                <p>Пишете нам в Telegram, рассказываете о поводе, предпочтениях и бюджете</p>
+                <h3 data-i18n="work.step1.title" data-uk="Вибір" data-ru="Выбор">Вибір</h3>
+                <p data-i18n="work.step1.desc" data-uk="Пишете нам у Telegram, розповідаєте про привід, переваги та бюджет" data-ru="Пишете нам в Telegram, рассказываете о поводе, предпочтениях и бюджете">Пишете нам у Telegram, розповідаєте про привід, переваги та бюджет</p>
             </div>
             <div class="step fade-in">
                 <div class="step-number">02</div>
-                <h3>Согласование</h3>
-                <p>Флорист предлагает варианты, уточняет детали. Присылаем фото готового букета</p>
+                <h3 data-i18n="work.step2.title" data-uk="Узгодження" data-ru="Согласование">Узгодження</h3>
+                <p data-i18n="work.step2.desc" data-uk="Флорист пропонує варіанти, уточнює деталі. Надсилаємо фото готового букета" data-ru="Флорист предлагает варианты, уточняет детали. Присылаем фото готового букета">Флорист пропонує варіанти, уточнює деталі. Надсилаємо фото готового букета</p>
             </div>
             <div class="step fade-in">
                 <div class="step-number">03</div>
-                <h3>Доставка</h3>
-                <p>Привозим по Киеву в удобное время. Оплата при получении или онлайн</p>
+                <h3 data-i18n="work.step3.title" data-uk="Доставка" data-ru="Доставка">Доставка</h3>
+                <p data-i18n="work.step3.desc" data-uk="Привозимо по Києву в зручний час. Оплата при отриманні або онлайн" data-ru="Привозим по Киеву в удобное время. Оплата при получении или онлайн">Привозимо по Києву в зручний час. Оплата при отриманні або онлайн</p>
             </div>
         </div>
     </section>
@@ -711,13 +769,13 @@
     <!-- Final CTA Section -->
     <section class="final-cta">
         <div class="final-cta-content fade-in">
-            <span class="section-label">Сделайте шаг</span>
-            <h2>Не знаете, какой букет <span>выбрать?</span></h2>
-            <p>Расскажите нам о человеке и поводе — подберем идеальную композицию под ваш бюджет. От 1200 ₴ до премиум-класса.</p>
-            <a href="https://t.me/your_telegram_bot" class="btn-primary">
-                Написать флористу в Telegram →
+            <span class="section-label" data-i18n="cta.label" data-uk="Зробіть крок" data-ru="Сделайте шаг">Зробіть крок</span>
+            <h2><span data-i18n="cta.title1" data-uk="Не знаєте, який букет" data-ru="Не знаете, какой букет">Не знаєте, який букет</span> <span data-i18n="cta.title2" data-uk="обрати?" data-ru="выбрать?">обрати?</span></h2>
+            <p data-i18n="cta.subtitle" data-uk="Розкажіть нам про людину та привід — підберемо ідеальну композицію під ваш бюджет. Від 1200 ₴ до преміум-класу." data-ru="Расскажите нам о человеке и поводе — подберем идеальную композицию под ваш бюджет. От 1200 ₴ до премиум-класса.">Розкажіть нам про людину та привід — підберемо ідеальну композицію під ваш бюджет. Від 1200 ₴ до преміум-класу.</p>
+            <a href="https://t.me/your_telegram_bot" class="btn-primary" data-i18n="cta.btn" data-uk="Написати флористу в Telegram →" data-ru="Написать флористу в Telegram →">
+                Написати флористу в Telegram →
             </a>
-            <div class="price-note">Ответим за 10 минут • Работаем ежедневно 9:00–21:00</div>
+            <div class="price-note" data-i18n="cta.note" data-uk="Відповімо за 10 хвилин • Працюємо щодня 9:00–21:00" data-ru="Ответим за 10 минут • Работаем ежедневно 9:00–21:00">Відповімо за 10 хвилин • Працюємо щодня 9:00–21:00</div>
         </div>
     </section>
 
@@ -726,22 +784,22 @@
         <div class="footer-content">
             <div class="footer-section">
                 <h4>Bloom Atelier</h4>
-                <p>Авторские букеты и цветочные композиции в Киеве. Создаем эмоции с 2020 года.</p>
+                <p data-i18n="footer.about" data-uk="Авторські букети та квіткові композиції в Києві. Створюємо емоції з 2020 року." data-ru="Авторские букеты и цветочные композиции в Киеве. Создаем эмоции с 2020 года.">Авторські букети та квіткові композиції в Києві. Створюємо емоції з 2020 року.</p>
             </div>
             <div class="footer-section">
-                <h4>Контакты</h4>
-                <p>📍 Киев, доставка по всему городу<br>
+                <h4 data-i18n="footer.contacts" data-uk="Контакти" data-ru="Контакты">Контакти</h4>
+                <p data-i18n="footer.address" data-uk="📍 Київ, доставка по всьому місту" data-ru="📍 Киев, доставка по всему городу">📍 Київ, доставка по всьому місту<br>
                 📱 <a href="https://t.me/your_telegram_bot">@bloom_atelier_bot</a><br>
                 📞 <a href="tel:+380501234567">+38 (050) 123-45-67</a></p>
             </div>
             <div class="footer-section">
-                <h4>Режим работы</h4>
-                <p>Ежедневно: 9:00 – 21:00<br>
-                Прием заказов: круглосуточно<br>
-                Доставка: 2 часа с момента подтверждения</p>
+                <h4 data-i18n="footer.hours" data-uk="Режим роботи" data-ru="Режим работы">Режим роботи</h4>
+                <p data-i18n="footer.schedule" data-uk="Щодня: 9:00 – 21:00<br>Прийом замовлень: цілодобово<br>Доставка: 2 години з моменту підтвердження" data-ru="Ежедневно: 9:00 – 21:00<br>Прием заказов: круглосуточно<br>Доставка: 2 часа с момента подтверждения">Щодня: 9:00 – 21:00<br>
+                Прийом замовлень: цілодобово<br>
+                Доставка: 2 години з моменту підтвердження</p>
             </div>
             <div class="footer-section">
-                <h4>Мы в соцсетях</h4>
+                <h4 data-i18n="footer.social" data-uk="Ми в соцмережах" data-ru="Мы в соцсетях">Ми в соцмережах</h4>
                 <div class="social-links">
                     <a href="#" aria-label="Instagram">IG</a>
                     <a href="#" aria-label="Telegram">TG</a>
@@ -749,11 +807,49 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>© 2024 Bloom Atelier. Все права защищены.</p>
+            <p data-i18n="footer.copyright" data-uk="© 2024 Bloom Atelier. Всі права захищені." data-ru="© 2024 Bloom Atelier. Все права защищены.">© 2024 Bloom Atelier. Всі права захищені.</p>
         </div>
     </footer>
 
     <script>
+        // Language Switcher
+        const langButtons = document.querySelectorAll('.lang-btn');
+        const defaultLang = 'uk';
+        
+        // Get saved language or use default
+        let currentLang = localStorage.getItem('language') || defaultLang;
+        
+        // Apply language on page load
+        function setLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('language', lang);
+            document.documentElement.lang = lang;
+            
+            // Update all translatable elements
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const translation = element.getAttribute(`data-${lang}`);
+                if (translation) {
+                    element.textContent = translation;
+                }
+            });
+            
+            // Update button states
+            langButtons.forEach(btn => {
+                btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+            });
+        }
+        
+        // Language button click handlers
+        langButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const lang = button.getAttribute('data-lang');
+                setLanguage(lang);
+            });
+        });
+        
+        // Apply saved language on load
+        setLanguage(currentLang);
+
         // Navbar scroll effect
         const navbar = document.getElementById('navbar');
         window.addEventListener('scroll', () => {
