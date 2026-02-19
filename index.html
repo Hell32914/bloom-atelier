@@ -98,6 +98,15 @@
             height: 100%;
             width: auto;
             object-fit: contain;
+            filter: brightness(1.1) contrast(0.9) saturate(0.85);
+            opacity: 0.92;
+            mix-blend-mode: multiply;
+            transition: all 0.3s ease;
+        }
+
+        .logo:hover img {
+            opacity: 1;
+            filter: brightness(1) contrast(1) saturate(1);
         }
 
         /* Hero Section */
