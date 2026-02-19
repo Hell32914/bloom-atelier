@@ -307,12 +307,13 @@
         }
 
         .section-label {
-            font-size: 0.75rem;
-            letter-spacing: 0.2em;
+            font-size: 0.9rem;
+            letter-spacing: 0.25em;
             text-transform: uppercase;
             color: var(--color-muted);
             margin-bottom: 1rem;
             display: block;
+            font-weight: 500;
         }
 
         .section-title {
@@ -370,50 +371,73 @@
             line-height: 1.7;
         }
 
-        /* Gallery Section */
+        /* Gallery Section - Auto-scrolling carousel */
         .gallery {
             padding: 6rem 5%;
             background: var(--color-bg);
+            overflow: hidden;
         }
 
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1rem;
-            max-width: 900px;
+        .auto-scroll-wrapper {
+            overflow: hidden;
+            position: relative;
+            max-width: 1400px;
             margin: 0 auto;
         }
 
+        .auto-scroll-track {
+            display: flex;
+            gap: 1.5rem;
+            animation: scroll 40s linear infinite;
+            width: fit-content;
+        }
+
+        .auto-scroll-track:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
         .gallery-item {
-            aspect-ratio: 4/5;
-            overflow: hidden;
-            cursor: pointer;
+            flex: 0 0 280px;
             position: relative;
-            background: var(--color-light);
+            overflow: hidden;
+            border-radius: 4px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
         }
 
         .gallery-item img {
-            width: 100%;
-            height: 100%;
+            width: 280px;
+            height: 350px;
             object-fit: cover;
-            transition: transform 0.5s ease;
             display: block;
         }
 
-        .gallery-item:hover img {
-            transform: scale(1.05);
-        }
-
-        .gallery-item::after {
-            content: '';
+        .gallery-item-price {
             position: absolute;
-            inset: 0;
-            background: rgba(212, 165, 165, 0);
-            transition: background 0.3s ease;
-        }
-
-        .gallery-item:hover::after {
-            background: rgba(212, 165, 165, 0.2);
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--color-accent);
+            color: var(--color-white);
+            padding: 0.75rem;
+            text-align: center;
+            font-family: var(--font-serif);
+            font-size: 1.2rem;
+            font-weight: 500;
         }
 
         /* Categories Section */
@@ -693,6 +717,15 @@
             .carousel-slide img {
                 height: 450px;
             }
+
+            .gallery-item {
+                flex: 0 0 250px;
+            }
+
+            .gallery-item img {
+                width: 250px;
+                height: 320px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -753,6 +786,20 @@
                 grid-template-columns: 1fr;
             }
 
+            .gallery-item {
+                flex: 0 0 220px;
+            }
+
+            .gallery-item img {
+                width: 220px;
+                height: 280px;
+            }
+
+            .gallery-item-price {
+                font-size: 1rem;
+                padding: 0.6rem;
+            }
+
             .category-image {
                 height: 300px;
             }
@@ -795,7 +842,7 @@
         <div class="hero-content">
             <h1><span data-i18n="hero.title1" data-uk="Квіти, які" data-ru="Цветы, которые">Квіти, які</span> <span data-i18n="hero.title2" data-uk="говорять" data-ru="говорят">говорять</span> <span data-i18n="hero.title3" data-uk="за вас" data-ru="за вас">за вас</span></h1>
             <p class="hero-subtitle" data-i18n="hero.subtitle" data-uk="Авторські букети з доставкою по Києву за 2 години. Свіжі, стильні, створені з увагою до кожної деталі." data-ru="Авторские букеты с доставкой по Киеву за 2 часа. Свежие, стильные, созданные с вниманием к каждой детали.">Авторські букети з доставкою по Києву за 2 години. Свіжі, стильні, створені з увагою до кожної деталі.</p>
-            <a href="https://t.me/your_telegram_bot" class="btn-primary" data-i18n="hero.cta" data-uk="Підібрати букет у Telegram →" data-ru="Подобрать букет в Telegram →">
+            <a href="https://t.me/lovely_rose_kiev" class="btn-primary" data-i18n="hero.cta" data-uk="Підібрати букет у Telegram →" data-ru="Подобрать букет в Telegram →">
                 Підібрати букет у Telegram →
             </a>
         </div>
@@ -850,6 +897,118 @@
         </div>
     </section>
 
+    <!-- Tulpa Carousel Section -->
+    <section class="features" style="background: var(--color-white); padding: 4rem 5%;">
+        <div class="section-header fade-in">
+            <h2 class="section-title" data-i18n="tulpa.title" data-uk="Тюльпани" data-ru="Тюльпаны">Тюльпани</h2>
+        </div>
+        <div style="display: flex; justify-content: center;">
+            <div class="hero-carousel">
+                <div class="carousel-container">
+                    <button class="carousel-btn prev" onclick="moveCarousel2(-1)">‹</button>
+                    <div class="carousel-track" id="carouselTrack2">
+                        <div class="carousel-slide">
+                            <img src="tulpa/1.12000.jpg" alt="Букет" loading="lazy">
+                            <div class="carousel-price">12 000 ₴</div>
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="tulpa/2.3500.jpg" alt="Букет" loading="lazy">
+                            <div class="carousel-price">3 500 ₴</div>
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="tulpa/3.11000.jpg" alt="Букет" loading="lazy">
+                            <div class="carousel-price">11 000 ₴</div>
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="tulpa/4.3500.jpg" alt="Букет" loading="lazy">
+                            <div class="carousel-price">3 500 ₴</div>
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="tulpa/5.9000.jpg" alt="Букет" loading="lazy">
+                            <div class="carousel-price">9 000 ₴</div>
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="tulpa/6.3500.jpg" alt="Букет" loading="lazy">
+                            <div class="carousel-price">3 500 ₴</div>
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="tulpa/7.16000.jpg" alt="Букет" loading="lazy">
+                            <div class="carousel-price">16 000 ₴</div>
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="tulpa/8.6000.jpg" alt="Букет" loading="lazy">
+                            <div class="carousel-price">6 000 ₴</div>
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="tulpa/9.2800.jpg" alt="Букет" loading="lazy">
+                            <div class="carousel-price">2 800 ₴</div>
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="tulpa/10.2500.jpg" alt="Букет" loading="lazy">
+                            <div class="carousel-price">2 500 ₴</div>
+                        </div>
+                    </div>
+                    <button class="carousel-btn next" onclick="moveCarousel2(1)">›</button>
+                </div>
+                <div class="carousel-indicators" id="carouselIndicators2"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rose Carousel Section -->
+    <section class="features" style="background: var(--color-bg); padding: 4rem 5%;">
+        <div class="section-header fade-in">
+            <h2 class="section-title" data-i18n="rose.title" data-uk="Троянди" data-ru="Розы">Троянди</h2>
+        </div>
+        <div style="display: flex; justify-content: center;">
+            <div class="hero-carousel">
+                <div class="carousel-container">
+                    <button class="carousel-btn prev" onclick="moveCarousel3(-1)">‹</button>
+                    <div class="carousel-track" id="carouselTrack3">
+                        <div class="carousel-slide">
+                            <img src="rose/1.25000.jpg" alt="Букет" loading="lazy">
+                            <div class="carousel-price">25 000 ₴</div>
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="rose/2.20000.jpg" alt="Букет" loading="lazy">
+                            <div class="carousel-price">20 000 ₴</div>
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="rose/3.7000.jpg" alt="Букет" loading="lazy">
+                            <div class="carousel-price">7 000 ₴</div>
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="rose/4.6500.jpg" alt="Букет" loading="lazy">
+                            <div class="carousel-price">6 500 ₴</div>
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="rose/5.8000.jpg" alt="Букет" loading="lazy">
+                            <div class="carousel-price">8 000 ₴</div>
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="rose/6.7000.jpg" alt="Букет" loading="lazy">
+                            <div class="carousel-price">7 000 ₴</div>
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="rose/7.9000.jpg" alt="Букет" loading="lazy">
+                            <div class="carousel-price">9 000 ₴</div>
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="rose/8.35000.jpg" alt="Букет" loading="lazy">
+                            <div class="carousel-price">35 000 ₴</div>
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="rose/9.45000.jpg" alt="Букет" loading="lazy">
+                            <div class="carousel-price">45 000 ₴</div>
+                        </div>
+                    </div>
+                    <button class="carousel-btn next" onclick="moveCarousel3(1)">›</button>
+                </div>
+                <div class="carousel-indicators" id="carouselIndicators3"></div>
+            </div>
+        </div>
+    </section>
+
     <!-- Features Section -->
     <section class="features">
         <div class="section-header fade-in">
@@ -883,20 +1042,75 @@
     <!-- Gallery Section -->
     <section class="gallery">
         <div class="section-header fade-in">
-            <h2 class="section-title" data-i18n="gallery.title" data-uk="Наші роботи :" data-ru="Наши работы :">Наші роботи :</h2>
+            <h2 class="section-title" data-i18n="gallery.title" data-uk="Натхнення для вас" data-ru="Вдохновение для вас">Натхнення для вас</h2>
         </div>
-        <div class="gallery-grid fade-in">
-            <div class="gallery-item">
-                <img src="image.png" alt="Красные тюльпаны" loading="lazy" onerror="this.style.display='none'">
-            </div>
-            <div class="gallery-item">
-                <img src="image(1).png" alt="Розовые и белые тюльпаны" loading="lazy" onerror="this.style.display='none'">
-            </div>
-            <div class="gallery-item">
-                <img src="image(2).png" alt="Тюльпаны в корзине" loading="lazy" onerror="this.style.display='none'">
-            </div>
-            <div class="gallery-item">
-                <img src="image(3).png" alt="Белые и сиреневые тюльпаны" loading="lazy" onerror="this.style.display='none'">
+        <div class="auto-scroll-wrapper fade-in">
+            <div class="auto-scroll-track" id="autoScrollTrack">
+                <div class="gallery-item">
+                    <img src="natx/1.18000.jpg" alt="Букет" loading="lazy">
+                    <div class="gallery-item-price">18 000 ₴</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="natx/2.30000.jpg" alt="Букет" loading="lazy">
+                    <div class="gallery-item-price">30 000 ₴</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="natx/3.25000.jpg" alt="Букет" loading="lazy">
+                    <div class="gallery-item-price">25 000 ₴</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="natx/4.18000.jpg" alt="Букет" loading="lazy">
+                    <div class="gallery-item-price">18 000 ₴</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="natx/5.28000.jpg" alt="Букет" loading="lazy">
+                    <div class="gallery-item-price">28 000 ₴</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="natx/6.35000.jpg" alt="Букет" loading="lazy">
+                    <div class="gallery-item-price">35 000 ₴</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="natx/7.30000.jpg" alt="Букет" loading="lazy">
+                    <div class="gallery-item-price">30 000 ₴</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="natx/8.14000.jpg" alt="Букет" loading="lazy">
+                    <div class="gallery-item-price">14 000 ₴</div>
+                </div>
+                <!-- Duplicate for seamless loop -->
+                <div class="gallery-item">
+                    <img src="natx/1.18000.jpg" alt="Букет" loading="lazy">
+                    <div class="gallery-item-price">18 000 ₴</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="natx/2.30000.jpg" alt="Букет" loading="lazy">
+                    <div class="gallery-item-price">30 000 ₴</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="natx/3.25000.jpg" alt="Букет" loading="lazy">
+                    <div class="gallery-item-price">25 000 ₴</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="natx/4.18000.jpg" alt="Букет" loading="lazy">
+                    <div class="gallery-item-price">18 000 ₴</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="natx/5.28000.jpg" alt="Букет" loading="lazy">
+                    <div class="gallery-item-price">28 000 ₴</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="natx/6.35000.jpg" alt="Букет" loading="lazy">
+                    <div class="gallery-item-price">35 000 ₴</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="natx/7.30000.jpg" alt="Букет" loading="lazy">
+                    <div class="gallery-item-price">30 000 ₴</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="natx/8.14000.jpg" alt="Букет" loading="lazy">
+                    <div class="gallery-item-price">14 000 ₴</div>
+                </div>
             </div>
         </div>
     </section>
@@ -941,7 +1155,6 @@
     <!-- How We Work Section -->
     <section class="how-we-work">
         <div class="section-header fade-in">
-            <span class="section-label" data-i18n="work.label" data-uk="Процес" data-ru="Процесс">Процес</span>
             <h2 class="section-title" data-i18n="work.title" data-uk="Як ми працюємо" data-ru="Как мы работаем">Як ми працюємо</h2>
         </div>
         <div class="steps-container">
@@ -966,10 +1179,9 @@
     <!-- Final CTA Section -->
     <section class="final-cta">
         <div class="final-cta-content fade-in">
-            <span class="section-label" data-i18n="cta.label" data-uk="Зробіть крок" data-ru="Сделайте шаг">Зробіть крок</span>
             <h2><span data-i18n="cta.title1" data-uk="Не знаєте, який букет" data-ru="Не знаете, какой букет">Не знаєте, який букет</span> <span data-i18n="cta.title2" data-uk="обрати?" data-ru="выбрать?">обрати?</span></h2>
-            <p data-i18n="cta.subtitle" data-uk="Розкажіть нам про людину та привід — підберемо ідеальну композицію під ваш бюджет. Від 1200 ₴ до преміум-класу." data-ru="Расскажите нам о человеке и поводе — подберем идеальную композицию под ваш бюджет. От 1200 ₴ до премиум-класса.">Розкажіть нам про людину та привід — підберемо ідеальну композицію під ваш бюджет. Від 1200 ₴ до преміум-класу.</p>
-            <a href="https://t.me/your_telegram_bot" class="btn-primary" data-i18n="cta.btn" data-uk="Написати флористу в Telegram →" data-ru="Написать флористу в Telegram →">
+            <p data-i18n="cta.subtitle" data-uk="Розкажіть нам про людину та привід — підберемо ідеальну композицію під ваш бюджет. Від 2000 ₴ до преміум-класу." data-ru="Расскажите нам о человеке и поводе — подберем идеальную композицию под ваш бюджет. От 2000 ₴ до премиум-класса.">Розкажіть нам про людину та привід — підберемо ідеальну композицію під ваш бюджет. Від 2000 ₴ до преміум-класу.</p>
+            <a href="https://t.me/lovely_rose_kiev" class="btn-primary" data-i18n="cta.btn" data-uk="Написати флористу в Telegram →" data-ru="Написать флористу в Telegram →">
                 Написати флористу в Telegram →
             </a>
             <div class="price-note" data-i18n="cta.note" data-uk="Відповімо за 10 хвилин • Працюємо щодня 9:00–21:00" data-ru="Ответим за 10 минут • Работаем ежедневно 9:00–21:00">Відповімо за 10 хвилин • Працюємо щодня 9:00–21:00</div>
@@ -986,7 +1198,7 @@
             <div class="footer-section">
                 <h4 data-i18n="footer.contacts" data-uk="Контакти" data-ru="Контакты">Контакти</h4>
                 <p data-i18n="footer.address" data-uk="📍 Київ, доставка по всьому місту" data-ru="📍 Киев, доставка по всему городу">📍 Київ, доставка по всьому місту<br>
-                📱 <a href="https://t.me/your_telegram_bot">@bloom_atelier_bot</a><br>
+                📱 <a href="https://t.me/lovely_rose_kiev">@lovely_rose_kiev</a><br>
                 📞 <a href="tel:+380501234567">+38 (050) 123-45-67</a></p>
             </div>
             <div class="footer-section">
@@ -998,8 +1210,8 @@
             <div class="footer-section">
                 <h4 data-i18n="footer.social" data-uk="Ми в соцмережах" data-ru="Мы в соцсетях">Ми в соцмережах</h4>
                 <div class="social-links">
-                    <a href="#" aria-label="Instagram">IG</a>
-                    <a href="#" aria-label="Telegram">TG</a>
+                    <a href="https://www.instagram.com/lovely_rose_kyiv_/" target="_blank" aria-label="Instagram">IG</a>
+                    <a href="https://t.me/lovely_rose_kiev" target="_blank" aria-label="Telegram">TG</a>
                 </div>
             </div>
         </div>
@@ -1115,6 +1327,88 @@
         setInterval(() => {
             window.moveCarousel(1);
         }, 5000);
+
+        // Carousel 2 functionality (Tulpa)
+        let currentSlide2 = 0;
+        const track2 = document.getElementById('carouselTrack2');
+        const slides2 = track2.querySelectorAll('.carousel-slide');
+        const totalSlides2 = slides2.length;
+        const indicatorsContainer2 = document.getElementById('carouselIndicators2');
+
+        // Create indicator dots for carousel 2
+        for (let i = 0; i < totalSlides2; i++) {
+            const dot = document.createElement('button');
+            dot.classList.add('carousel-dot');
+            if (i === 0) dot.classList.add('active');
+            dot.onclick = () => goToSlide2(i);
+            indicatorsContainer2.appendChild(dot);
+        }
+
+        window.moveCarousel2 = function(direction) {
+            currentSlide2 += direction;
+            if (currentSlide2 < 0) currentSlide2 = totalSlides2 - 1;
+            if (currentSlide2 >= totalSlides2) currentSlide2 = 0;
+            updateCarousel2();
+        }
+
+        function goToSlide2(index) {
+            currentSlide2 = index;
+            updateCarousel2();
+        }
+
+        function updateCarousel2() {
+            track2.style.transform = `translateX(-${currentSlide2 * 100}%)`;
+            
+            const dots = indicatorsContainer2.querySelectorAll('.carousel-dot');
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide2);
+            });
+        }
+
+        setInterval(() => {
+            window.moveCarousel2(1);
+        }, 5200);
+
+        // Carousel 3 functionality (Rose)
+        let currentSlide3 = 0;
+        const track3 = document.getElementById('carouselTrack3');
+        const slides3 = track3.querySelectorAll('.carousel-slide');
+        const totalSlides3 = slides3.length;
+        const indicatorsContainer3 = document.getElementById('carouselIndicators3');
+
+        // Create indicator dots for carousel 3
+        for (let i = 0; i < totalSlides3; i++) {
+            const dot = document.createElement('button');
+            dot.classList.add('carousel-dot');
+            if (i === 0) dot.classList.add('active');
+            dot.onclick = () => goToSlide3(i);
+            indicatorsContainer3.appendChild(dot);
+        }
+
+        window.moveCarousel3 = function(direction) {
+            currentSlide3 += direction;
+            if (currentSlide3 < 0) currentSlide3 = totalSlides3 - 1;
+            if (currentSlide3 >= totalSlides3) currentSlide3 = 0;
+            updateCarousel3();
+        }
+
+        function goToSlide3(index) {
+            currentSlide3 = index;
+            updateCarousel3();
+        }
+
+        function updateCarousel3() {
+            track3.style.transform = `translateX(-${currentSlide3 * 100}%)`;
+            
+            const dots = indicatorsContainer3.querySelectorAll('.carousel-dot');
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide3);
+            });
+        }
+
+        setInterval(() => {
+            window.moveCarousel3(1);
+        }, 5400);
     </script>
 </body>
 </html>
