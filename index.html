@@ -89,24 +89,18 @@
             position: absolute;
             left: 50%;
             transform: translateX(-50%);
-            height: 50px;
-            display: flex;
-            align-items: center;
-        }
-
-        .logo img {
-            height: 100%;
-            width: auto;
-            object-fit: contain;
-            filter: brightness(1.1) contrast(0.9) saturate(0.85);
-            opacity: 0.92;
-            mix-blend-mode: multiply;
+            font-family: var(--font-serif);
+            font-size: 1.8rem;
+            font-weight: 400;
+            letter-spacing: 0.3em;
+            color: var(--color-accent);
+            text-decoration: none;
+            text-transform: uppercase;
             transition: all 0.3s ease;
         }
 
-        .logo:hover img {
-            opacity: 1;
-            filter: brightness(1) contrast(1) saturate(1);
+        .logo:hover {
+            color: var(--color-accent-hover);
         }
 
         /* Hero Section */
@@ -646,7 +640,7 @@
             <button class="lang-btn active" data-lang="uk">УКР</button>
             <button class="lang-btn" data-lang="ru">РУ</button>
         </div>
-        <a href="#" class="logo"><img src="123123.jpg" alt="Bloom Atelier"></a>
+        <a href="#" class="logo">LOVELY</a>
     </nav>
 
     <!-- Hero Section -->
