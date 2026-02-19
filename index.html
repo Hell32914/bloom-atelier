@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bloom Atelier — Авторские букеты в Киеве</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-bg: #FAF9F7;
+            --color-text: #2C2C2C;
+            --color-accent: #D4A5A5;
+            --color-accent-hover: #C49494;
+            --color-muted: #8B8680;
+            --color-light: #F5F3F0;
+            --color-white: #FFFFFF;
+            --font-serif: 'Cormorant Garamond', serif;
+            --font-sans: 'Inter', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation - Simplified */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(250, 249, 247, 0.95);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+        }
+
+        .logo {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            color: var(--color-text);
+            text-decoration: none;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 8rem 5% 4rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 700px;
+            margin-bottom: 3rem;
+        }
+
+        .hero-label {
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--color-muted);
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .hero h1 {
+            font-family: var(--font-serif);
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 300;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            color: var(--color-text);
+        }
+
+        .hero h1 span {
+            font-style: italic;
+            color: var(--color-accent);
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            color: var(--color-muted);
+            margin-bottom: 2.5rem;
+            font-weight: 300;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: var(--color-accent);
+            color: var(--color-white);
+            padding: 1.1rem 2.5rem;
+            border: none;
+            font-size: 0.9rem;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            font-family: var(--font-sans);
+            border-radius: 2px;
+        }
+
+        .btn-primary:hover {
+            background: var(--color-accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(212, 165, 165, 0.3);
+        }
+
+        .hero-image {
+            width: 100%;
+            max-width: 600px;
+            margin-top: 2rem;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            border-radius: 4px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.1);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 6rem 5%;
+            background: var(--color-white);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-label {
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--color-muted);
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .section-title {
+            font-family: var(--font-serif);
+            font-size: clamp(1.8rem, 3vw, 2.5rem);
+            font-weight: 400;
+            color: var(--color-text);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            text-align: center;
+            padding: 2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 1.5rem;
+            background: var(--color-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .feature-card h3 {
+            font-family: var(--font-serif);
+            font-size: 1.3rem;
+            font-weight: 500;
+            margin-bottom: 0.75rem;
+            color: var(--color-text);
+        }
+
+        .feature-card p {
+            font-size: 0.9rem;
+            color: var(--color-muted);
+            line-height: 1.7;
+        }
+
+        /* Gallery Section */
+        .gallery {
+            padding: 6rem 5%;
+            background: var(--color-bg);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .gallery-item {
+            aspect-ratio: 3/4;
+            overflow: hidden;
+            cursor: pointer;
+            position: relative;
+            background: var(--color-light);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+            display: block;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .gallery-item::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(212, 165, 165, 0);
+            transition: background 0.3s ease;
+        }
+
+        .gallery-item:hover::after {
+            background: rgba(212, 165, 165, 0.2);
+        }
+
+        /* Categories Section */
+        .categories {
+            padding: 6rem 5%;
+            background: var(--color-white);
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .category-card {
+            background: var(--color-bg);
+            overflow: hidden;
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+
+        .category-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+        }
+
+        .category-image {
+            width: 100%;
+            height: 400px;
+            overflow: hidden;
+            background: var(--color-light);
+        }
+
+        .category-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+            display: block;
+        }
+
+        .category-card:hover .category-image img {
+            transform: scale(1.05);
+        }
+
+        .category-content {
+            padding: 2rem;
+        }
+
+        .category-content h3 {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin-bottom: 0.75rem;
+            color: var(--color-text);
+        }
+
+        .category-content p {
+            font-size: 0.9rem;
+            color: var(--color-muted);
+            line-height: 1.7;
+        }
+
+        /* How We Work Section */
+        .how-we-work {
+            padding: 6rem 5%;
+            background: var(--color-bg);
+        }
+
+        .steps-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            gap: 2rem;
+            position: relative;
+        }
+
+        .steps-container::before {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 15%;
+            right: 15%;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--color-accent), transparent);
+            z-index: 0;
+        }
+
+        .step {
+            flex: 1;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .step-number {
+            width: 80px;
+            height: 80px;
+            background: var(--color-white);
+            border: 2px solid var(--color-accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: var(--color-accent);
+        }
+
+        .step h3 {
+            font-family: var(--font-serif);
+            font-size: 1.3rem;
+            font-weight: 500;
+            margin-bottom: 0.75rem;
+            color: var(--color-text);
+        }
+
+        .step p {
+            font-size: 0.9rem;
+            color: var(--color-muted);
+            line-height: 1.7;
+        }
+
+        /* Final CTA Section */
+        .final-cta {
+            padding: 8rem 5%;
+            background: linear-gradient(135deg, var(--color-light) 0%, var(--color-bg) 100%);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .final-cta::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(212, 165, 165, 0.05) 0%, transparent 70%);
+            animation: pulse 15s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .final-cta-content {
+            position: relative;
+            z-index: 1;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .final-cta h2 {
+            font-family: var(--font-serif);
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 300;
+            margin-bottom: 1.5rem;
+            color: var(--color-text);
+        }
+
+        .final-cta h2 span {
+            font-style: italic;
+            color: var(--color-accent);
+        }
+
+        .final-cta p {
+            font-size: 1.1rem;
+            color: var(--color-muted);
+            margin-bottom: 2.5rem;
+            font-weight: 300;
+        }
+
+        .price-note {
+            display: inline-block;
+            margin-top: 1.5rem;
+            padding: 0.75rem 1.5rem;
+            background: rgba(212, 165, 165, 0.1);
+            border-radius: 50px;
+            font-size: 0.85rem;
+            color: var(--color-accent);
+            font-weight: 500;
+        }
+
+        /* Footer */
+        footer {
+            padding: 4rem 5% 2rem;
+            background: var(--color-text);
+            color: var(--color-white);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h4 {
+            font-family: var(--font-serif);
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            color: var(--color-white);
+        }
+
+        .footer-section p, .footer-section a {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            line-height: 1.8;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--color-accent);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.5);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--color-accent);
+            border-color: var(--color-accent);
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .steps-container {
+                flex-direction: column;
+                gap: 3rem;
+            }
+
+            .steps-container::before {
+                display: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .features-grid,
+            .categories-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .category-image {
+                height: 300px;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+            }
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+<base target="_blank">
+</head>
+<body>
+    <!-- Navigation - Simplified -->
+    <nav id="navbar">
+        <a href="#" class="logo">BLOOM ATELIER</a>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <span class="hero-label">Цветочная мастерская в Киеве</span>
+            <h1>Цветы, которые <span>говорят</span> за вас</h1>
+            <p class="hero-subtitle">Авторские букеты с доставкой по Киеву за 2 часа. Свежие, стильные, созданные с вниманием к каждой детали.</p>
+            <a href="https://t.me/your_telegram_bot" class="btn-primary">
+                Подобрать букет в Telegram →
+            </a>
+        </div>
+        <div class="hero-image">
+            <img src="image(8).png" alt="Букет из розовых пионов" onerror="this.style.display='none'">
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="section-header fade-in">
+            <span class="section-label">Почему мы</span>
+            <h2 class="section-title">Забота в каждой детали</h2>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card fade-in">
+                <div class="feature-icon">🌿</div>
+                <h3>Свежесть 24/7</h3>
+                <p>Прямые поставки цветов с лучших плантаций. Каждый букет собираем непосредственно в день доставки.</p>
+            </div>
+            <div class="feature-card fade-in">
+                <div class="feature-icon">📸</div>
+                <h3>Фото перед отправкой</h3>
+                <p>Пришлем снимок готовой композиции до доставки. Вы увидите результат и утвердите его.</p>
+            </div>
+            <div class="feature-card fade-in">
+                <div class="feature-icon">✨</div>
+                <h3>Авторский дизайн</h3>
+                <p>Никаких шаблонов. Каждая работа — уникальная композиция, созданная под ваш запрос.</p>
+            </div>
+            <div class="feature-card fade-in">
+                <div class="feature-icon">🎁</div>
+                <h3>Премиум упаковка</h3>
+                <p>Крафт-бумага, атласные ленты, открытка ручной работы. Детали, которые впечатляют.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery">
+        <div class="section-header fade-in">
+            <span class="section-label">Наши работы</span>
+            <h2 class="section-title">Вдохновение для вас</h2>
+        </div>
+        <div class="gallery-grid fade-in">
+            <div class="gallery-item">
+                <img src="image.png" alt="Красные тюльпаны" loading="lazy" onerror="this.style.display='none'">
+            </div>
+            <div class="gallery-item">
+                <img src="image(1).png" alt="Розовые и белые тюльпаны" loading="lazy" onerror="this.style.display='none'">
+            </div>
+            <div class="gallery-item">
+                <img src="image(2).png" alt="Тюльпаны в корзине" loading="lazy" onerror="this.style.display='none'">
+            </div>
+            <div class="gallery-item">
+                <img src="image(3).png" alt="Белые и сиреневые тюльпаны" loading="lazy" onerror="this.style.display='none'">
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories">
+        <div class="section-header fade-in">
+            <span class="section-label">Каталог</span>
+            <h2 class="section-title">Наши направления</h2>
+        </div>
+        <div class="categories-grid">
+            <div class="category-card fade-in">
+                <div class="category-image">
+                    <img src="image(4).png" alt="Авторские букеты" loading="lazy" onerror="this.style.display='none'">
+                </div>
+                <div class="category-content">
+                    <h3>Авторские букеты</h3>
+                    <p>Свободные композиции из сезонных цветов. Нежные или контрастные, воздушные или структурные — под настроение и повод.</p>
+                </div>
+            </div>
+            <div class="category-card fade-in">
+                <div class="category-image">
+                    <img src="image(7).png" alt="Композиции в коробках" loading="lazy" onerror="this.style.display='none'">
+                </div>
+                <div class="category-content">
+                    <h3>Композиции в коробках</h3>
+                    <p>Элегантное решение для особых моментов. Цветы в коробке сохраняют свежесть дольше и выглядят роскошно.</p>
+                </div>
+            </div>
+            <div class="category-card fade-in">
+                <div class="category-image">
+                    <img src="image(5).png" alt="Монобукеты" loading="lazy" onerror="this.style.display='none'">
+                </div>
+                <div class="category-content">
+                    <h3>Монобукеты</h3>
+                    <p>Один вид цветов в идеальном сочетании. Минимализм, который не нуждается в объяснениях. Пионы, тюльпаны, розы.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How We Work Section -->
+    <section class="how-we-work">
+        <div class="section-header fade-in">
+            <span class="section-label">Процесс</span>
+            <h2 class="section-title">Как мы работаем</h2>
+        </div>
+        <div class="steps-container">
+            <div class="step fade-in">
+                <div class="step-number">01</div>
+                <h3>Выбор</h3>
+                <p>Пишете нам в Telegram, рассказываете о поводе, предпочтениях и бюджете</p>
+            </div>
+            <div class="step fade-in">
+                <div class="step-number">02</div>
+                <h3>Согласование</h3>
+                <p>Флорист предлагает варианты, уточняет детали. Присылаем фото готового букета</p>
+            </div>
+            <div class="step fade-in">
+                <div class="step-number">03</div>
+                <h3>Доставка</h3>
+                <p>Привозим по Киеву в удобное время. Оплата при получении или онлайн</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="final-cta">
+        <div class="final-cta-content fade-in">
+            <span class="section-label">Сделайте шаг</span>
+            <h2>Не знаете, какой букет <span>выбрать?</span></h2>
+            <p>Расскажите нам о человеке и поводе — подберем идеальную композицию под ваш бюджет. От 1200 ₴ до премиум-класса.</p>
+            <a href="https://t.me/your_telegram_bot" class="btn-primary">
+                Написать флористу в Telegram →
+            </a>
+            <div class="price-note">Ответим за 10 минут • Работаем ежедневно 9:00–21:00</div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Bloom Atelier</h4>
+                <p>Авторские букеты и цветочные композиции в Киеве. Создаем эмоции с 2020 года.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Контакты</h4>
+                <p>📍 Киев, доставка по всему городу<br>
+                📱 <a href="https://t.me/your_telegram_bot">@bloom_atelier_bot</a><br>
+                📞 <a href="tel:+380501234567">+38 (050) 123-45-67</a></p>
+            </div>
+            <div class="footer-section">
+                <h4>Режим работы</h4>
+                <p>Ежедневно: 9:00 – 21:00<br>
+                Прием заказов: круглосуточно<br>
+                Доставка: 2 часа с момента подтверждения</p>
+            </div>
+            <div class="footer-section">
+                <h4>Мы в соцсетях</h4>
+                <div class="social-links">
+                    <a href="#" aria-label="Instagram">IG</a>
+                    <a href="#" aria-label="Telegram">TG</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2024 Bloom Atelier. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Fade in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
