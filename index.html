@@ -1416,11 +1416,6 @@
             });
         }
 
-        // Auto-slide every 5 seconds
-        setInterval(() => {
-            window.moveCarousel(1);
-        }, 5000);
-
         // Carousel 2 functionality (Tulpa)
         let currentSlide2 = 0;
         const track2 = document.getElementById('carouselTrack2');
@@ -1457,10 +1452,6 @@
                 dot.classList.toggle('active', index === currentSlide2);
             });
         }
-
-        setInterval(() => {
-            window.moveCarousel2(1);
-        }, 5200);
 
         // Carousel 3 functionality (Rose)
         let currentSlide3 = 0;
@@ -1499,10 +1490,6 @@
             });
         }
 
-        setInterval(() => {
-            window.moveCarousel3(1);
-        }, 5400);
-
         // Carousel 4 functionality (Pione)
         let currentSlide4 = 0;
         const track4 = document.getElementById('carouselTrack4');
@@ -1539,10 +1526,6 @@
                 dot.classList.toggle('active', index === currentSlide4);
             });
         }
-
-        setInterval(() => {
-            window.moveCarousel4(1);
-        }, 5600);
     </script>
 </body>
 </html>
